@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duckvile | Admin Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;900&display=swap');
+        body { margin: 0; font-family: 'Inter', sans-serif; background: #000; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+        .admin-card { background: #111; border: 4px solid #59c13a; padding: 50px; border-radius: 20px; box-shadow: 0 0 50px rgba(89, 193, 58, 0.2); }
+        h1 { font-family: 'Press Start 2P'; color: #8cff66; font-size: 20px; margin-bottom: 30px; }
+        .panel-btn { display: inline-block; padding: 20px 40px; background: #59c13a; color: #000; text-decoration: none; font-weight: 900; border-radius: 10px; font-size: 18px; transition: 0.3s; }
+        .panel-btn:hover { background: #8cff66; transform: scale(1.05); }
+        .logout { display: block; margin-top: 30px; color: #ff4444; text-decoration: none; font-size: 12px; }
+    </style>
+    <script>
+        // If not logged in, bounce them back to index
+        if (localStorage.getItem('duckville_auth') !== 'true') {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="admin-card">
+        <h1>ADMIN DASHBOARD</h1>
+        <p style="color: #888;">Authenticated as Duckvillesmp@gmail.com</p>
+        
+        <a href="PASTE_YOUR_MINECRAFT_PANEL_URL_HERE" target="_blank" class="panel-btn">OPEN MINECRAFT PANEL</a>
+        
+        <a href="#" onclick="logout()" class="logout">Log Out</a>
+    </div>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('duckville_auth');
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

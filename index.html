@@ -33,14 +33,13 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
 .apply-section{text-align:center; margin: 40px auto; max-width: 1150px;}
 .credits{text-align:center;padding:40px 20px;color:#ccc}
 
-/* Server Status Specific Styling */
-#status-indicator { font-weight: bold; margin-bottom: 10px; display: block; }
+/* Minimal Status Styles */
+#status-indicator { font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block; }
 .online-text { color: #59c13a; }
 .offline-text { color: #ff4444; }
-.player-count-large { font-size: 24px; font-weight: 900; color: #fff; margin: 10px 0; }
-
-/* Custom IP Button Text */
-.ip-text { font-family: 'Press Start 2P', cursive; font-size: 12px; letter-spacing: 1px; }
+.player-count { font-size: 20px; font-weight: 900; margin: 5px 0; }
+.update-timer { font-size: 7.5px; color: #555; margin-top: 4px; text-transform: uppercase; } /* Smallest Text */
+.ip-text { font-family: 'Press Start 2P', cursive; font-size: 12px; }
 </style>
 </head>
 <body>
@@ -57,10 +56,9 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
 
 <section class="grid">
 <div class="card" style="text-align: center; border-color: #59c13a;">
-    <h3>SERVER STATUS</h3>
+    <h3>STATUS</h3>
     <div id="status-indicator">Checking...</div>
-    <div class="player-count-large"><span id="p-now">0</span> / <span id="p-max">0</span></div>
-    <p style="font-size: 14px; margin: 5px 0;">Players Online</p>
+    <div class="player-count"><span id="p-now">0</span> / <span id="p-max">0</span></div>
     <div class="update-timer">Updates every 60 seconds</div>
 </div>
 
@@ -106,22 +104,19 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script>
-    // --- IP COPY SCRIPT ---
     function copyIP(btn) {
         const ip = "DuckVile.vsrv.cc";
         navigator.clipboard.writeText(ip).then(() => {
             const originalText = btn.innerHTML;
             btn.innerHTML = '<span class="ip-text">COPIED!</span>';
-            btn.style.background = "linear-gradient(#ffcc00, #ff9900)"; // Gold color for success
+            btn.style.background = "linear-gradient(#ffcc00, #ff9900)";
             setTimeout(() => {
                 btn.innerHTML = originalText;
-                btn.style.background = ""; // Reverts to CSS default
+                btn.style.background = "";
             }, 2000);
         });
     }
 
-    // --- SERVER STATUS SCRIPT ---
-    // Note: Fetching from the actual connection IP:Port, but displaying the vanity IP above
     const statusIp = "Extra-Domain.vsrv.cc";
     const port = "25569";
 
@@ -141,33 +136,23 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
                 }
             })
             .catch(err => {
-                document.getElementById('status-indicator').innerText = "Status Error";
+                document.getElementById('status-indicator').innerText = "Error";
             });
     }
 
     updateServerStatus();
     setInterval(updateServerStatus, 15000);
 
-    // --- ADMIN LOGIN SCRIPT ---
     const ALLOWED_EMAILS = ["Duckvillesmp@gmail.com"];
-
-    function showLogin() {
-        document.getElementById('admin-login-container').style.display = 'block';
-    }
-
+    function showLogin() { document.getElementById('admin-login-container').style.display = 'block'; }
     function handleCredentialResponse(response) {
         const base64Url = response.credential.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const payload = JSON.parse(window.atob(base64));
-        
         if (ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(payload.email.toLowerCase())) {
             localStorage.setItem('duckville_auth', 'true');
-            document.getElementById('status-msg').style.color = "#59c13a";
-            document.getElementById('status-msg').innerText = "Access Granted! Redirecting...";
+            document.getElementById('status-msg').innerText = "Redirecting...";
             setTimeout(() => { window.location.href = "admin-panel.html"; }, 1000);
-        } else {
-            document.getElementById('status-msg').style.color = "#ff4444";
-            document.getElementById('status-msg').innerText = "Access Denied.";
         }
     }
 
@@ -176,10 +161,7 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
             client_id: "801340317427-7egskcjpcfjtum51crmk82kj69o7c07n.apps.googleusercontent.com",
             callback: handleCredentialResponse
         });
-        google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "small" }
-        );
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), { theme: "outline", size: "small" });
     }
 </script>
 

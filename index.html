@@ -76,7 +76,53 @@ header{display:flex;justify-content:space-between;align-items:center;padding:18p
     <a href="apply.html" class="btn" style="font-size: 20px; padding: 20px 40px;">APPLY FOR STAFF</a>
 </section>
 
-<footer class="credits">Website builder - @quincy_error_ • Hosting - @listlessvoid</footer>
+<footer class="credits">
+    Website builder - @quincy_error_ • Hosting - @listlessvoid
+    <br><br>
+    <a href="#" onclick="showLogin()" style="color: #444; font-size: 10px; text-decoration: none;">Admin Access</a>
+    
+    <div id="admin-login-container" style="display:none; margin-top: 10px;">
+        <div id="buttonDiv" style="display: flex; justify-content: center;"></div>
+        <p id="status-msg" style="font-size: 12px;"></p>
+    </div>
+</footer>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+    const ALLOWED_EMAILS = ["Duckvillesmp@gmail.com"];
+
+    function showLogin() {
+        document.getElementById('admin-login-container').style.display = 'block';
+    }
+
+    function handleCredentialResponse(response) {
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(window.atob(base64));
+        
+        if (ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(payload.email.toLowerCase())) {
+            localStorage.setItem('duckville_auth', 'true');
+            document.getElementById('status-msg').style.color = "#59c13a";
+            document.getElementById('status-msg').innerText = "Access Granted! Redirecting...";
+            setTimeout(() => { window.location.href = "admin-panel.html"; }, 1000);
+        } else {
+            document.getElementById('status-msg').style.color = "#ff4444";
+            document.getElementById('status-msg').innerText = "Access Denied.";
+        }
+    }
+
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "801340317427-7egskcjpcfjtum51crmk82kj69o7c07n.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "outline", size: "small" }
+        );
+    }
+</script>
 
 </body>
 </html>

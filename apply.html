@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duckvile | Join the Team</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,sans-serif;color:#fff;background:#000 url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1920&q=80') center/cover fixed;}
+
+/* Background Fix - Ensures clicks pass through */
+body:before{content:'';position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:0;pointer-events:none}
+body:after{content:'';position:fixed;inset:0;background:url('https://www.transparenttextures.com/patterns/pixel-weave.png');opacity:0.12;z-index:0;pointer-events:none}
+
+header, .container{position:relative;z-index:2}
+header{padding:30px;background:rgba(15,15,15,0.85);border-bottom:4px solid #59c13a;text-align:center;backdrop-filter:blur(12px)}
+.logo-text{font-family:'Press Start 2P';color:#8cff66;text-decoration:none;font-size:20px;text-shadow: 2px 2px #000;}
+
+.container{max-width:850px;margin:40px auto;padding:20px}
+.app-card{background:rgba(28,28,28,0.98);padding:45px;border-radius:24px;border:1px solid #444;box-shadow:0 25px 50px rgba(0,0,0,0.8)}
+
+.back-btn{display:inline-block;margin-bottom:20px;color:#8cff66;text-decoration:none;font-weight:700;font-size:14px;border:1px solid #8cff66;padding:10px 20px;border-radius:10px;transition:0.3s;background:rgba(0,0,0,0.3);}
+.back-btn:hover{background:#8cff66;color:#000;transform:translateX(-5px);}
+
+h1{font-family:'Press Start 2P';font-size:24px;color:#9cff75;text-align:center;margin-bottom:10px}
+.intro-text{text-align:center;color:#ccc;margin-bottom:40px;line-height:1.6;font-size:15px}
+
+.section-header{display:flex;align-items:center;margin:40px 0 20px;color:#ffd54a;font-weight:900;text-transform:uppercase;font-size:14px;letter-spacing:1px}
+.section-header::after{content:'';flex:1;height:1px;background:#444;margin-left:15px}
+
+.grid-row{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-bottom:20px}
+label{display:block;margin-bottom:10px;font-weight:600;color:#eee;font-size:14px}
+.hint{display:block;font-size:12px;color:#888;margin-bottom:8px;font-style:italic}
+
+input, textarea, select{
+    width:100%;padding:15px;background:#141414;border:2px solid #333;color:#fff;border-radius:10px;
+    font-family:Inter;font-size:15px;transition:0.2s ease;
+}
+input:focus, textarea:focus{outline:none;border-color:#59c13a;background:#1a1a1a}
+
+.submit-btn{
+    width:100%;margin-top:50px;padding:22px;background:linear-gradient(#67d94a,#3f9727);
+    border:none;color:#fff;font-weight:900;font-size:18px;cursor:pointer;border-radius:14px;
+    border:2px solid #a8ff8c;box-shadow:0 6px 0 #295e17;transition:0.2s;text-transform:uppercase;
+}
+.submit-btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 #295e17}
+.submit-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #295e17}
+
+@media (max-width:600px){ .grid-row{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header><a href="index.html" class="logo-text">DUCKVILE SMP</a></header>
+
+<div class="container">
+    <a href="index.html" class="back-btn">← BACK TO HOME</a>
+
+    <div class="app-card">
+        <h1>Hey there, future staff!</h1>
+        <p class="intro-text">
+            We're thrilled you want to help us grow Duckvile. We value personality and maturity over everything else. 
+            Take your time with these questions—we want to get to know the person behind the screen!
+        </p>
+        
+        <form id="humanForm">
+            <div class="section-header">The Basics</div>
+            <div class="grid-row">
+                <div>
+                    <label>What should we call you?</label>
+                    <input type="text" id="ign" placeholder="Your Minecraft IGN" required>
+                </div>
+                <div>
+                    <label>Discord Tag</label>
+                    <input type="text" id="discord" placeholder="username#0000" required>
+                </div>
+            </div>
+            <div class="grid-row">
+                <div>
+                    <label>How old are you?</label>
+                    <input type="number" id="age" min="13" required>
+                </div>
+                <div>
+                    <label>Where in the world are you?</label>
+                    <span class="hint">Helps us know when you'll be online (Timezone)</span>
+                    <input type="text" id="timezone" placeholder="e.g. EST or London, UK" required>
+                </div>
+            </div>
+
+            <div class="section-header">The Role</div>
+            <label>Which position feels like the best fit for you?</label>
+            <span class="hint">Note: To apply for higher ranks, you must have held the previous rank (e.g., must be a Helper to apply for Moderator).</span>
+            <select id="role" style="margin-bottom:25px">
+                <option value="Helper">Helper — Open for all applicants.</option>
+                <option value="Moderator">Moderator — Must have been a Helper first.</option>
+                <option value="Administrator">Administrator — Must have been a Moderator first.</option>
+            </select>
+
+            <label>Tell us about your history with Minecraft staff teams:</label>
+            <span class="hint">What did you love? What did you hate? (If none, just tell us why you're starting now!)</span>
+            <textarea id="experience" rows="4" required></textarea>
+
+            <div class="section-header">Getting to know you</div>
+            
+            <label>What are three words your friends would use to describe you?</label>
+            <input type="text" id="traits" placeholder="e.g. Patient, Funny, Observant" required style="margin-bottom:20px">
+
+            <label>Why Duckvile? What makes this server special to you compared to others?</label>
+            <textarea id="whyDuck" rows="4" required></textarea>
+
+            <label>If you could change or add one thing to the server right now, what would it be?</label>
+            <textarea id="change" rows="4" required></textarea>
+
+            <label>How do you handle stress or being overwhelmed by multiple players asking for help at once?</label>
+            <textarea id="stress" rows="4" required></textarea>
+
+            <div class="section-header">Scenario Check</div>
+            
+            <label>Scenario: You see a staff member (a friend of yours) breaking a minor rule. What do you do?</label>
+            <textarea id="friendRule" rows="4" required></textarea>
+
+            <label>Scenario: A player is being extremely rude to you personally in chat. How do you respond?</label>
+            <textarea id="rudePlayer" rows="4" required></textarea>
+
+            <button type="submit" class="submit-btn" id="subBtn">Send my application!</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('humanForm').onsubmit = async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('subBtn');
+    
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1496477924855910582/RPl_MeTQCkvgXq-z16mdfBxH49RroXtyrzdru7bWPlhdDGIgn5QsHEjcFBcW2GvoWxdm";
+
+    btn.innerText = "SENDING TO STAFF...";
+    btn.disabled = true;
+
+    const embedData = {
+        username: "Duckvile Application Hub",
+        avatar_url: "https://raw.githubusercontent.com/duckvillesmp/Websiteicons/main/logo(1)2.png",
+        embeds: [{
+            title: "✨ NEW APPLICATION",
+            color: 8978278,
+            fields: [
+                { name: "👋 The Applicant", value: `**IGN:** ${document.getElementById('ign').value}\n**Discord:** ${document.getElementById('discord').value}\n**Age:** ${document.getElementById('age').value}\n**Location:** ${document.getElementById('timezone').value}`, inline: false },
+                { name: "⭐ Role Choice", value: document.getElementById('role').value, inline: true },
+                { name: "🎭 Personal Traits", value: document.getElementById('traits').value, inline: true },
+                { name: "📜 Past Experience", value: document.getElementById('experience').value, inline: false },
+                { name: "❤️ Why Duckvile?", value: document.getElementById('whyDuck').value, inline: false },
+                { name: "💡 Idea for Change", value: document.getElementById('change').value, inline: false },
+                { name: "🧠 Stress Management", value: document.getElementById('stress').value, inline: false },
+                { name: "⚖️ Friend Breaking Rules", value: document.getElementById('friendRule').value, inline: false },
+                { name: "💬 Handling Rudeness", value: document.getElementById('rudePlayer').value, inline: false }
+            ],
+            footer: { text: "Duckvile Staff Recruitment • Sent via Website" },
+            timestamp: new Date()
+        }]
+    };
+
+    try {
+        const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(embedData)
+        });
+
+        if (response.ok) {
+            alert("Thanks! Your application has been sent. Keep an eye on your Discord DMs!");
+            window.location.href = "index.html";
+        } else { throw new Error(); }
+    } catch (err) {
+        alert("Oops! Something went wrong. Make sure your Webhook URL is set up correctly.");
+        btn.innerText = "Send my application!";
+        btn.disabled = false;
+    }
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duckvile | Home</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;700;900&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:#fff;overflow-x:hidden;background:#000 url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=80') center/cover fixed no-repeat}
+body:before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.85));z-index:0;pointer-events:none}
+body:after{content:'';position:fixed;inset:0;background:url('https://www.transparenttextures.com/patterns/pixel-weave.png');opacity:.18;z-index:0;animation:movebg 20s linear infinite;pointer-events:none}
+@keyframes movebg{from{transform:translateY(0)}to{transform:translateY(120px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 rgba(0,255,100,0)}50%{box-shadow:0 0 35px rgba(0,255,100,.6)}}
+@keyframes glow{0%,100%{text-shadow:0 0 8px #7cff61,4px 4px #000}50%{text-shadow:0 0 25px #aaff88,4px 4px #000}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+header,section,footer{position:relative;z-index:2}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(20,20,20,.72);backdrop-filter:blur(8px);border-bottom:4px solid #59c13a;animation:slideUp 1s ease}
+.logo{display:flex;align-items:center;gap:14px}.logo img{height:58px;animation:none}.logo span{font-family:'Press Start 2P';font-size:18px;color:#8cff66}
+.btn{display:inline-block;padding:16px 24px;background:linear-gradient(#67d94a,#3f9727);color:#fff;text-decoration:none;border-radius:12px;font-weight:900;border:2px solid #a8ff8c;box-shadow:0 6px 0 #295e17;transition:.2s;animation:pulse 2s infinite;cursor:pointer}.btn:hover{transform:translateY(-4px) scale(1.05)}
+.hero{text-align:center;padding:100px 20px 70px;animation:slideUp 1.2s ease}
+.hero h1{font-family:'Press Start 2P';font-size:clamp(28px,5vw,70px);line-height:1.4;margin:0;color:#9cff75;animation:glow 2s infinite}
+.hero p{max-width:850px;margin:26px auto;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1150px;margin:auto;padding:20px}
+.card{background:rgba(34,34,34,.88);border:2px solid #4e4e4e;border-bottom:6px solid #222;border-radius:18px;padding:22px;box-shadow:0 14px 28px rgba(0,0,0,.45);transition:.25s;animation:slideUp .9s ease}
+.card:hover{transform:translateY(-10px) scale(1.03);border-color:#78ff5a}
+.card h3{margin-top:0;font-family:'Press Start 2P';font-size:14px;line-height:1.7;color:#ffd54a}
+.showcase{max-width:1150px;margin:20px auto;padding:20px;text-align:center}
+.showcase img{width:100%;border-radius:20px;border:3px solid #6ad14b;box-shadow:0 20px 50px rgba(0,0,0,.55);animation:float 5s ease-in-out infinite}
+.rules{max-width:1150px;margin:30px auto;padding:24px}
+.rules ol{line-height:2;font-size:18px;padding-left:24px}
+.apply-section{text-align:center; margin: 40px auto; max-width: 1150px;}
+.credits{text-align:center;padding:40px 20px;color:#ccc}
+
+/* Minimal Status Styles */
+#status-indicator { font-size: 13px; font-weight: bold; margin-bottom: 5px; display: block; }
+.online-text { color: #59c13a; }
+.offline-text { color: #ff4444; }
+.player-count { font-size: 20px; font-weight: 900; margin: 5px 0; }
+.update-timer { font-size: 7.5px; color: #555; margin-top: 4px; text-transform: uppercase; } /* Smallest Text */
+.ip-text { font-family: 'Press Start 2P', cursive; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><img src="https://raw.githubusercontent.com/duckvillesmp/Websiteicons/main/logo(1)2.png"><span>DUCKVILE</span></div>
+<a class="btn" href="https://discord.gg/bMQQz7tHfd" target="_blank">JOIN DISCORD</a>
+</header>
+
+<section class="hero">
+<h1>A FRIENDLY SURVIVAL SMP ADVENTURE</h1>
+<p>Build safely, make friends, create towns, and enjoy a relaxed Minecraft survival world with land claims and a welcoming community.</p>
+<div class="btn ip-button" onclick="copyIP(this)"><span class="ip-text">IP: DuckVile.vsrv.cc</span></div>
+</section>
+
+<section class="grid">
+<div class="card" style="text-align: center; border-color: #59c13a;">
+    <h3>STATUS</h3>
+    <div id="status-indicator">Checking...</div>
+    <div class="player-count"><span id="p-now">0</span> / <span id="p-max">0</span></div>
+    <div class="update-timer">Updates every 60 seconds</div>
+</div>
+
+<div class="card"><h3>SURVIVAL FRIENDLY</h3><p>Non-PvP survival focused on building, trading and community.</p></div>
+<div class="card"><h3>CREATIVE BUILDING</h3><p>Create towns, farms, castles and dream projects without limits.</p></div>
+<div class="card"><h3>LIVE EVENTS</h3><p>Community events, treasure hunts, parkour and seasonal fun.</p></div>
+</section>
+
+<section class="showcase">
+<img src="https://images.unsplash.com/photo-1627856013091-fed6e4e30025?auto=format&fit=crop&w=1400&q=80">
+</section>
+
+<section class="rules card">
+<h3>SERVER RULES</h3>
+<ol>
+<li>No xraying</li>
+<li>No lag machines</li>
+<li>No duping</li>
+<li>No spam</li>
+<li>No harassment</li>
+<li>No NSFW</li>
+<li>No mass griefing</li>
+<li>No lava casting</li>
+<li>Respect everyone</li>
+</ol>
+</section>
+
+<section class="apply-section">
+    <a href="apply.html" class="btn" style="font-size: 20px; padding: 20px 40px;">APPLY FOR STAFF</a>
+</section>
+
+<footer class="credits">
+    Website builder - @quincy_error_ • Hosting - @listlessvoid
+    <br><br>
+    <a href="#" onclick="showLogin()" style="color: #444; font-size: 10px; text-decoration: none;">Admin Access</a>
+    
+    <div id="admin-login-container" style="display:none; margin-top: 10px;">
+        <div id="buttonDiv" style="display: flex; justify-content: center;"></div>
+        <p id="status-msg" style="font-size: 12px;"></p>
+    </div>
+</footer>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+    function copyIP(btn) {
+        const ip = "DuckVile.vsrv.cc";
+        navigator.clipboard.writeText(ip).then(() => {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="ip-text">COPIED!</span>';
+            btn.style.background = "linear-gradient(#ffcc00, #ff9900)";
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = "";
+            }, 2000);
+        });
+    }
+
+    const statusIp = "Extra-Domain.vsrv.cc";
+    const port = "25569";
+
+    function updateServerStatus() {
+        fetch(`https://mcapi.us/server/status?ip=${statusIp}&port=${port}`)
+            .then(response => response.json())
+            .then(data => {
+                const statusEl = document.getElementById('status-indicator');
+                if (data.online) {
+                    statusEl.innerHTML = '<span class="online-text">● ONLINE</span>';
+                    document.getElementById('p-now').innerText = data.players.now;
+                    document.getElementById('p-max').innerText = data.players.max;
+                } else {
+                    statusEl.innerHTML = '<span class="offline-text">● OFFLINE</span>';
+                    document.getElementById('p-now').innerText = "0";
+                    document.getElementById('p-max').innerText = "0";
+                }
+            })
+            .catch(err => {
+                document.getElementById('status-indicator').innerText = "Error";
+            });
+    }
+
+    updateServerStatus();
+    setInterval(updateServerStatus, 15000);
+
+    const ALLOWED_EMAILS = ["Duckvillesmp@gmail.com"];
+    function showLogin() { document.getElementById('admin-login-container').style.display = 'block'; }
+    function handleCredentialResponse(response) {
+        const base64Url = response.credential.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const payload = JSON.parse(window.atob(base64));
+        if (ALLOWED_EMAILS.map(e => e.toLowerCase()).includes(payload.email.toLowerCase())) {
+            localStorage.setItem('duckville_auth', 'true');
+            document.getElementById('status-msg').innerText = "Redirecting...";
+            setTimeout(() => { window.location.href = "admin-panel.html"; }, 1000);
+        }
+    }
+
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "801340317427-7egskcjpcfjtum51crmk82kj69o7c07n.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), { theme: "outline", size: "small" });
+    }
+</script>
+
+</body>
+</html>

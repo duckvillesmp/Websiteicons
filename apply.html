@@ -172,7 +172,7 @@ document.getElementById('humanForm').onsubmit = async function(e) {
             window.location.href = "index.html";
         } else { throw new Error(); }
     } catch (err) {
-        alert("Oops! Something went wrong. Make sure your Webhook URL is set up correctly.");
+        alert("Oops! Something went wrong.");
         btn.innerText = "Send my application!";
         btn.disabled = false;
     }
